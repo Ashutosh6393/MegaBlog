@@ -10,7 +10,8 @@ function MyPosts() {
   useEffect(() => {
     blogServices.getMyPosts().then((posts) => {
       if (posts) {
-        const userPosts = posts.documents.filter((post) => post.userId === userData.userData.$id)
+        const userPosts = posts.documents.filter((post) => {
+          return post.userId === userData.userData.$id})
         setPosts(userPosts);
       }
     });
