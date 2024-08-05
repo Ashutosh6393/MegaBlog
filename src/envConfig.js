@@ -6,7 +6,7 @@ const env = {
     appwriteBucket: String(import.meta.env.VITE_APPWRITE_BUCKET_ID),
     rwtKey: String(import.meta.env.VITE_RTE_API_KEY),
     suprSend: String(import.meta.env.VITE_SUPRSEND_KEY),
-    subscriberId: String(import.meta.env.VITE_SUBSCRIBE_ID),
+    subscriberId: String(import.meta.env.VITE_SUBSCRIBER_ID),
     distinctId: String(import.meta.env.VITE_DISTINCT_ID)
 }
 
