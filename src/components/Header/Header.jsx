@@ -1,12 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Logo, LogoutBtn } from "../index";
 import { useSelector } from "react-redux";
-import {  Link, NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import user from "../../appwrite/authServices";
+import SuprSendInbox from "@suprsend/react-inbox";
+import env from "../../envConfig";
 
 function Header() {
   const authStatus = useSelector((state) => {
     return state.authSlice.status;
   });
+
+  const [email, setEmail] = useState(null);
+  const [userId, setUserId] = useState(null);
+
+  try {
+    user.getAccount().then((account) => {
+      if (account) {
+        setEmail(account.providerUid);
+        setUserId(account.userId);
+      }
+    });
+  } catch (error) {
+    console.log(error);
+  }
 
   const navItems = [
     {
@@ -64,6 +81,15 @@ function Header() {
               <li className="flex justify-center items-center">
                 <LogoutBtn />
               </li>
+            )}
+            {authStatus && (
+              <div className="ml-4 p-2">
+                <SuprSendInbox
+                  workspaceKey={env.suprSend}
+                  subscriberId={env.subscriberId}
+                  distinctId={env.distinctId}
+                />
+              </div>
             )}
           </ul>
         </nav>

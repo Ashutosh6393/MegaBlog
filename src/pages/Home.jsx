@@ -20,7 +20,7 @@ function Home() {
     <div className="w-full py-8">
       <Container>
         <h1 className="text-4xl font-bold mb-4 ">All Blog Posts</h1>
-        {!loginStatus && <h2 className="my-4">Login to write your blog posts</h2>}
+        {!loginStatus && (<h2 className="my-4">Login to write your blog posts</h2>)}
         <div className="flex flex-wrap gap-3">
           {posts.map((post) => (
             <div key={post.$id} className="w-1/4">
